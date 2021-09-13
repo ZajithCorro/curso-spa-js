@@ -1,0 +1,27 @@
+language: node_js
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+node_js:
+  - '14.17.5'
+git:
+  depth: 3
+script:
+  - yarn build
+notifications:
+  email:
+    recipients:
+      - zaja_9508@hotmail.com
+    on_success: always
+    on_failure: always
+deploy:
+  provider: pages
+  skip_cleanup: true
+  keep_history: true
+  github_token: $GITHUB_TOKEN # Set in the settings page of your repository, as a secure variable
+  local_dir: dist/
+  target_branch: gh-pages
+  commit_message: 'Deploy de proyecto'
+  on:
+    branch: main
